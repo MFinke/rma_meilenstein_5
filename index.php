@@ -15,6 +15,9 @@
       .aussen-box { 
         position:absolute;
         text-align:center;
+        border: 5px solid #000000;
+        background-color:#C0C0C0;
+        width: 800px;
       }
   
   </style>
@@ -28,22 +31,22 @@
     </header>
     
     <p>
-
+    <form action="index.php" method="post"
     <div>
-    Vorname: <input type="text" name="Betreff" size="30">
-    Name: <input type="text" name="Betreff" size="30">
+    Vorname: <input type="text" name="vorname" size="30">
+    Name: <input type="text" name="name" size="30">
     </div>
     <p><br>
-    <form action="auswertung.php" method="post">
+    
 
   
       <h3>Wer war der Erfinder von Linux?</h3>
       <img src="scr/linus.png" width="30%" height="30%"><br>
 
         <div id="radio_left">
-          <input type="radio" name="kategorie1" value="1-1">Steve Jobs<br>
-          <input type="radio" name="kategorie1" value="1-2">Bill Gates<br>
-          <input type="radio" name="kategorie1" value="1-3">Linus Toarvards<---
+          <input type="radio" name="kategorie1" value="1-1" />Steve Jobs<br>
+          <input type="radio" name="kategorie1" value="1-2" />Bill Gates<br>
+          <input type="radio" name="kategorie1" value="1-3" />Linus Toarvards<---
         </div>
     </p>
     
@@ -73,13 +76,65 @@
 
       <input type="radio" name="kategorie4" value="4-1">Fedora<br>
       <input type="radio" name="kategorie4" value="4-2">Manjaro<---<br>
-      <input type="radio" name="kategorie4" value="4-3">Kali
+      <input type="radio" name="kategorie4" value="4-3">Kali<p></p>
 
 
-    <input type="hidden" name="UserBrowser" value="<?php echo htmlspecialchars($kategorie1); ?>">
-      
-    <input type="submit" name="Submit" value="Submit">
-    <input type="reset" name="Reset" value="Reset">
+   
+      <input type="hidden" name="hidden" value="yes">
+  <?php
+  
+    if(!isset($_POST['hidden'])){
+        echo '<input type="submit" name="Submit" value="Submit">';
+        echo '<input type="reset" name="Reset" value="Reset">';
+    }else{
+      $vorname = $_POST['vorname'];
+      $name = $_POST['name'];
+      $umfrage1 = $_POST['kategorie1'];
+      $umfrage2 = $_POST['kategorie2'];
+      $umfrage3 = $_POST['kategorie3'];
+      $umfrage4 = $_POST['kategorie4'];
+
+      if( empty($vorname)){
+          $vorname = "kein";
+      }
+      if(empty($name)){
+          $name = "kein";
+      }
+
+      //echo $vorname;
+      //echo $name;
+
+      if( empty($umfrage1) || empty($umfrage2) || empty($umfrage3) || empty($umfrage4) ){
+        Echo "<h4>Bitte beantworten Sie alle Fragen<br><h4>";
+        echo '<input type="submit" name="Submit" value="Submit">';
+        echo '<input type="reset" name="Reset" value="Reset">';
+      }else{
+
+        $cvsData = "\n" . $vorname . ";" . $name . ";" . $umfrage1 . ";" . $umfrage2 . ";" . $umfrage3 . ";" . $umfrage4;
+
+        $filename1 = 'formTest.csv';
+        if (!file_exists($filename1)) {
+              $firstData = "vorname;name;umfrage1;umfrage2;umfrage3;umfrage4";
+              $fp = fopen($filename1,"a"); // $fp is now the file pointer to file $filename
+              echo "1"; 
+            if($fp){
+                fwrite($fp,$firstData); // Write information to the file
+                fclose($fp); // Close the file
+              echo "2";
+          }
+        }
+
+        $fp = fopen("formTest.csv","a"); // $fp is now the file pointer to file $filename
+
+        if($fp){
+            fwrite($fp,$cvsData); // Write information to the file
+            fclose($fp); // Close the file
+        }
+        echo "Vielen Danke!";
+      }
+    }
+
+  ?>
 </form>
 
 
@@ -88,14 +143,11 @@
      <p>&copy; Copyright  by Mirko Finke</p>
 
      
- <?php
-    
- 
 
-?> 
 
     </footer>
   </div>
   </div>
+ 
 </body>
 </html>
