@@ -24,44 +24,42 @@
 </head>
 
 <body>
+<form action="index.php" method="post">
   <div class="aussen-box">
-  <div>
-    <header>
-      <h1>Umfrage</h1>
-    </header>
-    
-    <p>
-    <form action="index.php" method="post"
     <div>
-    Vorname: <input type="text" name="vorname" size="30">
-    Name: <input type="text" name="name" size="30">
+        
+        <header>
+            <h1>Umfrage</h1>
+        </header>
+        <p>
+    
+
+      <input type="hidden" name="hidden" value="yes">
+  <?php
+    $htmlDoc = '
+        Vorname: <input type="text" name="vorname" size="30">
+        Name: <input type="text" name="name" size="30">
     </div>
     <p><br>
     
+    <h3>Wer war der Erfinder von Linux?</h3>
+    <img src="scr/linus.png" width="30%" height="30%"><br>
 
-  
-      <h3>Wer war der Erfinder von Linux?</h3>
-      <img src="scr/linus.png" width="30%" height="30%"><br>
-
-        <div id="radio_left">
-          <input type="radio" name="kategorie1" value="1-1" />Steve Jobs<br>
-          <input type="radio" name="kategorie1" value="1-2" />Bill Gates<br>
-          <input type="radio" name="kategorie1" value="1-3" />Linus Toarvards<---
-        </div>
+    <div id="radio_left">
+      <input type="radio" name="kategorie1" value="1-1" />Steve Jobs<br>
+      <input type="radio" name="kategorie1" value="1-2" />Bill Gates<br>
+      <input type="radio" name="kategorie1" value="1-3" />Linus Toarvards<---
+    </div>
     </p>
     
-
-
-    <h3>Was bedeuted der Konsolenbefehl "chmod 644" unter Linux-Systemen?</h3>
-    <img src="scr/pinguin.gif" width="15%" height="15%"><br>
-    
+      <h3>Was bedeuted der Konsolenbefehl "chmod 644" unter Linux-Systemen?</h3>
+      <img src="scr/pinguin.gif" width="15%" height="15%"><br>
       <input type="radio" name="kategorie2" value="2-1">Der Eigentümer darf lesen, schreiben und ausführen, alle anderen nur lesen.<br>
       <input type="radio" name="kategorie2" value="2-2">Der Eigentümer darf lesen und schreiben, alle anderen nur lesen.<---<br>
       <input type="radio" name="kategorie2" value="2-3">Eigentümer und Gruppe dürfen lesen und schreiben, der Rest nichts. 
     </p>
 
-    
-    <h3>Was ist Ubuntu?</h3>
+      <h3>Was ist Ubuntu?</h3>
       <div>
       <img src="scr/ubuntu.png" width="15%" height="15%">
       </div>
@@ -70,20 +68,18 @@
       <input type="radio" name="kategorie3" value="3-3">Ein Unix-System
     </p>
 
-
-    <h3>Welche Distribution ist eine Roling-Release?</h3>
-    <img src="scr/archlinux.png" width="15%" height="15%"><br>
+      <h3>Welche Distribution ist eine Roling-Release?</h3>
+      <img src="scr/archlinux.png" width="15%" height="15%"><br>
 
       <input type="radio" name="kategorie4" value="4-1">Fedora<br>
       <input type="radio" name="kategorie4" value="4-2">Manjaro<---<br>
       <input type="radio" name="kategorie4" value="4-3">Kali<p></p>
+      ';
+      
 
 
-   
-      <input type="hidden" name="hidden" value="yes">
-  <?php
-  
     if(!isset($_POST['hidden'])){
+        echo $htmlDoc;
         echo '<input type="submit" name="Submit" value="Submit">';
         echo '<input type="reset" name="Reset" value="Reset">';
     }else{
@@ -105,6 +101,7 @@
       //echo $name;
 
       if( empty($umfrage1) || empty($umfrage2) || empty($umfrage3) || empty($umfrage4) ){
+        echo $htmlDoc;
         Echo "<h4>Bitte beantworten Sie alle Fragen<br><h4>";
         echo '<input type="submit" name="Submit" value="Submit">';
         echo '<input type="reset" name="Reset" value="Reset">';
@@ -115,38 +112,34 @@
         $filename1 = 'formTest.csv';
         if (!file_exists($filename1)) {
               $firstData = "vorname;name;umfrage1;umfrage2;umfrage3;umfrage4";
-              $fp = fopen($filename1,"a"); // $fp is now the file pointer to file $filename
+              $fp = fopen($filename1,"a"); 
               echo "1"; 
             if($fp){
-                fwrite($fp,$firstData); // Write information to the file
-                fclose($fp); // Close the file
+                fwrite($fp,$firstData); 
+                fclose($fp); 
               echo "2";
           }
         }
 
-        $fp = fopen("formTest.csv","a"); // $fp is now the file pointer to file $filename
+        $fp = fopen("formTest.csv","a");
 
         if($fp){
-            fwrite($fp,$cvsData); // Write information to the file
-            fclose($fp); // Close the file
+            fwrite($fp,$cvsData); 
+            fclose($fp);
         }
-        echo "Vielen Danke!";
+        
+        echo 'Vielen Dank!';
+
       }
     }
 
   ?>
-</form>
-
-
+  </form>
     <div>
-    <footer>
-     <p>&copy; Copyright  by Mirko Finke</p>
-
-     
-
-
-    </footer>
-  </div>
+        <footer>
+            <p>&copy; Copyright  by Mirko Finke</p>
+        </footer>
+    </div>
   </div>
  
 </body>
