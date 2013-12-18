@@ -19,6 +19,26 @@
         background-color:#C0C0C0;
         width: 800px;
       }
+      .radio-left1 {
+      	width:120px;
+      	margin: 15px auto;
+      	text-align:left;
+      }
+      .radio-left2 {
+      	width:530px;
+      	margin: 15px auto;
+      	text-align:left;
+      }
+      .radio-left3 {
+      	width:150px;
+      	margin: 15px auto;
+      	text-align:left;
+      }
+      .radio-left4 {
+      	width:90px;
+      	margin: 15px auto;
+      	text-align:left;
+      }
   
   </style>
 </head>
@@ -40,40 +60,45 @@
         Vorname: <input type="text" name="vorname" size="30">
         Name: <input type="text" name="name" size="30">
     </div>
-    <p><br>
-    
-    <h3>Wer war der Erfinder von Linux?</h3>
+    <br>
+    <p>
+    <h3>Wer ist der Erfinder von Linux?</h3>
     <img src="scr/linus.png" width="30%" height="30%"><br>
 
-    <div id="radio_left">
-      <input type="radio" name="kategorie1" value="1-1" />Steve Jobs<br>
-      <input type="radio" name="kategorie1" value="1-2" />Bill Gates<br>
-      <input type="radio" name="kategorie1" value="1-3" />Linus Toarvards<---
-    </div>
-    </p>
+    <div class="radio-left1">
+      <input type="radio" name="kategorie1" value="11" />Steve Jobs<br>
+      <input type="radio" name="kategorie1" value="12" />Bill Gates<br>
+      <input type="radio" name="kategorie1" value="13" />Linus Torvalds
+     </div>
+    <p>
     
       <h3>Was bedeuted der Konsolenbefehl "chmod 644" unter Linux-Systemen?</h3>
       <img src="scr/pinguin.gif" width="15%" height="15%"><br>
-      <input type="radio" name="kategorie2" value="2-1">Der Eigentümer darf lesen, schreiben und ausführen, alle anderen nur lesen.<br>
-      <input type="radio" name="kategorie2" value="2-2">Der Eigentümer darf lesen und schreiben, alle anderen nur lesen.<---<br>
-      <input type="radio" name="kategorie2" value="2-3">Eigentümer und Gruppe dürfen lesen und schreiben, der Rest nichts. 
-    </p>
+      <div class="radio-left2">
+      <input type="radio" name="kategorie2" value="21">Der Eigentümer darf lesen, schreiben und ausführen, alle anderen nur lesen.<br>
+      <input type="radio" name="kategorie2" value="22">Der Eigentümer darf lesen und schreiben, alle anderen nur lesen.<br>
+      <input type="radio" name="kategorie2" value="23">Eigentümer und Gruppe dürfen lesen und schreiben, der Rest nichts. 
+      </div>
+    <p>
 
       <h3>Was ist Ubuntu?</h3>
       <div>
       <img src="scr/ubuntu.png" width="15%" height="15%">
       </div>
-      <input type="radio" name="kategorie3" value="3-1">Linux-Distrbution<--- <br>
-      <input type="radio" name="kategorie3" value="3-2">Ein Handy <br>
-      <input type="radio" name="kategorie3" value="3-3">Ein Unix-System
+      <div class="radio-left3">
+      <input type="radio" name="kategorie3" value="31">Linux-Distrbution <br>
+      <input type="radio" name="kategorie3" value="32">Ein Handy <br>
+      <input type="radio" name="kategorie3" value="33">Ein Unix-System
+      </div>
     </p>
 
-      <h3>Welche Distribution ist eine Roling-Release?</h3>
+      <h3>Welche Distribution ist eine Rolling-Release?</h3>
       <img src="scr/archlinux.png" width="15%" height="15%"><br>
-
-      <input type="radio" name="kategorie4" value="4-1">Fedora<br>
-      <input type="radio" name="kategorie4" value="4-2">Manjaro<---<br>
-      <input type="radio" name="kategorie4" value="4-3">Kali<p></p>
+       <div class="radio-left4">
+      <input type="radio" name="kategorie4" value="41">Fedora<br>
+      <input type="radio" name="kategorie4" value="42">Manjaro <br>
+      <input type="radio" name="kategorie4" value="43">Kali<p></p>
+      </div>
       ';
       
 
@@ -85,11 +110,12 @@
     }else{
       $vorname = $_POST['vorname'];
       $name = $_POST['name'];
-      $umfrage1 = $_POST['kategorie1'];
-      $umfrage2 = $_POST['kategorie2'];
-      $umfrage3 = $_POST['kategorie3'];
-      $umfrage4 = $_POST['kategorie4'];
-
+      
+        @$umfrage1 = $_POST['kategorie1'];
+        @$umfrage2 = $_POST['kategorie2'];
+        @$umfrage3 = $_POST['kategorie3'];
+        @$umfrage4 = $_POST['kategorie4'];
+      
       if( empty($vorname)){
           $vorname = "kein";
       }
@@ -109,38 +135,45 @@
 
         $cvsData = "\n" . $vorname . ";" . $name . ";" . $umfrage1 . ";" . $umfrage2 . ";" . $umfrage3 . ";" . $umfrage4;
 
-        $filename1 = 'formTest.csv';
+        $filename1 = 'daten.csv';
         if (!file_exists($filename1)) {
-              $firstData = "vorname;name;umfrage1;umfrage2;umfrage3;umfrage4";
+              $firstData = "vorname;name;Frage 1;Frage 2;Frage 3;Frage 4";
               $fp = fopen($filename1,"a"); 
-              echo "1"; 
+              //echo "1"; 
             if($fp){
                 fwrite($fp,$firstData); 
                 fclose($fp); 
-              echo "2";
+              //echo "2";
           }
         }
 
-        $fp = fopen("formTest.csv","a");
+        $fp = fopen("daten.csv","a");
 
         if($fp){
             fwrite($fp,$cvsData); 
             fclose($fp);
         }
-        
-        echo 'Vielen Dank!';
+        echo '<div><img src="scr/voting.jpg" width="12%" height="12%"></div>';
 
+        echo '<p>Vielen Dank!';
+
+        echo '<p><a href="auswertung.php">Hier geht es zur Auswertung</a><br>';
       }
     }
 
   ?>
+  
   </form>
     <div>
+    <!--
         <footer>
-            <p>&copy; Copyright  by Mirko Finke</p>
+            <p>&copy; Copyright  by Mirko Finke</p> 
         </footer>
+     -->
+     <p>
+
     </div>
   </div>
- 
+  
 </body>
 </html>
