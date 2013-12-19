@@ -20,7 +20,7 @@
         width: 800px;
       }
       .radio-left1 {
-      	width:120px;
+      	width:140px;
       	margin: 15px auto;
       	text-align:left;
       }
@@ -67,7 +67,7 @@
 
     <div class="radio-left1">
       <input type="radio" name="kategorie1" value="11" />Steve Jobs<br>
-      <input type="radio" name="kategorie1" value="12" />Bill Gates<br>
+      <input type="radio" name="kategorie1" value="12" />Richard Stallman<br>
       <input type="radio" name="kategorie1" value="13" />Linus Torvalds
      </div>
     <p>
@@ -86,9 +86,9 @@
       <img src="scr/ubuntu.png" width="15%" height="15%">
       </div>
       <div class="radio-left3">
-      <input type="radio" name="kategorie3" value="31">Linux-Distrbution <br>
-      <input type="radio" name="kategorie3" value="32">Ein Handy <br>
-      <input type="radio" name="kategorie3" value="33">Ein Unix-System
+      <input type="radio" name="kategorie3" value="31">Linux-Distribution <br>
+      <input type="radio" name="kategorie3" value="32">Ein Smartphone <br>
+      <input type="radio" name="kategorie3" value="33">UNIX System
       </div>
     </p>
 
@@ -133,11 +133,11 @@
         echo '<input type="reset" name="Reset" value="Reset">';
       }else{
 
-        $cvsData = "\n" . $vorname . ";" . $name . ";" . $umfrage1 . ";" . $umfrage2 . ";" . $umfrage3 . ";" . $umfrage4;
+        $csvData = "\n" . '"' . $vorname . '"' . ";" . '"' . $name . '"' . ";" . $umfrage1 . ";" . $umfrage2 . ";" . $umfrage3 . ";" . $umfrage4;
 
         $filename1 = 'daten.csv';
         if (!file_exists($filename1)) {
-              $firstData = "vorname;name;Frage 1;Frage 2;Frage 3;Frage 4";
+              $firstData = '"vorname";"name";"Frage 1";"Frage 2";"Frage 3";"Frage 4"';
               $fp = fopen($filename1,"a"); 
               //echo "1"; 
             if($fp){
@@ -150,7 +150,7 @@
         $fp = fopen("daten.csv","a");
 
         if($fp){
-            fwrite($fp,$cvsData); 
+            fwrite($fp,$csvData); 
             fclose($fp);
         }
         echo '<div><img src="scr/voting.jpg" width="12%" height="12%"></div>';

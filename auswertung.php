@@ -11,10 +11,19 @@
   <link rel="shortcut icon" href="/favicon.ico">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
+  <style type="text/css">
+      .aussen-box { 
+        position:absolute;
+        text-align:center;
+        border: 5px solid #000000;
+        background-color:#C0C0C0;
+        width: 800px;
+      }
+    </style>
 </head>
-
+<div class="aussen-box">
 <body>
-  <div class="aussen-box">  
+  
 
   <table border="0">
   <colgroup>
@@ -221,7 +230,7 @@ echo '<table border="1" bordercolor="#ffffff" style="background-color:#C0C0C0" w
     * Überschrift mit der Schriftart "Arial" 
     */ 
     $pdf->SetFont('Arial', 'B', 18); 
-    $pdf->Write(4, "UMFRAGE"); 
+    $pdf->Write(4, "Umfrageergebnis"); 
     $pdf->Ln(10); 
     $pdf->SetFont('Arial', '', 12); 
     $pdf->Cell(30,5,"",1); 
@@ -285,9 +294,10 @@ echo '<table border="1" bordercolor="#ffffff" style="background-color:#C0C0C0" w
              <p>&copy; Copyright  by Mirko Finke</p> 
           </footer>
         -->
-        <p>
+        <p></p>
     </div>
 
   </div>
+</div>
 </body>
 </html>

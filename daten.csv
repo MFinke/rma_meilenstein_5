@@ -1,21 +1,5 @@
-vorname;name;Frage 1;Frage 2;Frage 3;Frage 4
-Hans;Meier;11;21;31;41
-Peter;kein;12;22;32;42
-kein;Finke;13;23;33;43
-kein;Finke;12;22;32;42
-kein;kein;11;21;31;41
-kein;kein;11;21;31;41
-kein;kein;13;23;33;43
-kein;kein;11;21;31;41
-kein;kein;12;21;31;42
-kein;kein;11;21;31;41
-kein;kein;13;22;31;43
-kein;kein;13;22;31;43
-kein;kein;13;22;31;43
-kein;kein;13;22;31;43
-kein;kein;13;22;31;43
-kein;kein;13;22;31;43
-kein;kein;12;22;32;42
-jnk ;gbz;12;23;31;41
-kein;kein;13;23;33;42
-kein;kein;12;22;31;41
+"vorname";"name";"Frage 1";"Frage 2";"Frage 3";"Frage 4"
+"Karl";"Meier";13;22;31;42
+"Werner";"kein";13;22;31;42
+"kein";"kein";13;22;31;42
+"kein";"kein";13;22;31;42
